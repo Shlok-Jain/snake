@@ -164,7 +164,7 @@ window.onload = function () {
     }
     const modal = new ModalJS({
         title: 'Snake - By Shlok Jain',
-        body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li>For mobile devices swipe in game grid</li></ul>',
+        body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li style="font-weight:bold;">Usage for mobile devices is under construction.</li></ul>',
         theme: 'light',
         custom_buttons: [
             {
