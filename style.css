@@ -15,7 +15,7 @@ body{
     background-color: #00e200;
 }
 .food{
-    background-image: url(/fruit.png);
+    background-image: url(./fruit.png);
     background-size: cover;
 }
 @media (max-aspect-ratio: 1/1) {
