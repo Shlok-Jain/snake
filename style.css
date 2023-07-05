@@ -1,0 +1,60 @@
+*{margin: 0;padding: 0;}
+body{
+    min-height: 100vh;
+    background-color: rgb(75 75 75) !important;
+}
+
+.game-container{
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: repeat(20,1fr);
+    margin: auto;
+}
+
+.snake-present{
+    background-color: #00e200;
+}
+.food{
+    background-image: url(/fruit.png);
+    background-size: cover;
+}
+@media (max-aspect-ratio: 1/1) {
+    .game-container{
+        width: 100%;
+    }
+  }
+  
+  @media (min-aspect-ratio: 1/1) {
+    .game-container{
+        height: calc(90vh);
+    }
+  }
+  
+  @media (aspect-ratio: 1/1) {
+    .game-container{
+        width: 100%;
+    }
+  }
+
+.game-block{
+    border: 1px solid grey;
+    font-size: 12px;
+}
+
+.score-container{
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    font-size: 25px;
+    font-family: monospace;
+    color: orange;
+}
+.score{
+width: 50%;
+}
+.highscore{
+width: 50%;
+}
+.score-span{
+    color: white;
+}
