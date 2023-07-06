@@ -31,6 +31,12 @@ mc.on("swipeleft swipeup swipedown swiperight", (ev) => {
     }
 })
 
+mc.get('swipe').set({
+    direction: Hammer.DIRECTION_ALL,
+    threshold: 1, 
+    velocity:0.1
+  });
+
 const drawsnake = function () {
     for (let r = 0; r < list.length; r++) {
         list[r].classList.remove("snake-present")
@@ -164,7 +170,7 @@ window.onload = function () {
     }
     const modal = new ModalJS({
         title: 'Snake - By Shlok Jain',
-        body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li style="font-weight:bold;">Usage for mobile devices is under construction.</li></ul>',
+        body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li>For mobile devices swipe in game grid.</li></ul>',
         theme: 'light',
         custom_buttons: [
             {
