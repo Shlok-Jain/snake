@@ -131,6 +131,7 @@ const gameOver = function () {
         close_btn_text: "CLOSE",
         draggable: true,
         close_on_out_click: false,
+        hide_close_btn:true
     })
     modal.show()
 }
@@ -193,6 +194,7 @@ window.onload = function () {
         close_btn_text: "CLOSE",
         draggable: true,
         close_on_out_click: false,
+        hide_close_btn:true
     })
     modal.show()
 }
