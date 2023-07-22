@@ -5,6 +5,81 @@ var speed = 100
 var direction = 4
 var myelem = document.getElementsByClassName("game-container")[0]
 var mc = new Hammer(myelem);
+const gameover_modal = new ModalJS({
+    title: 'Game Over',
+    body: 'Game is over. Do you want to play again.<br><br> Liked the game? Consdier <a href="#" onclick="javascript:navigator.share({url:`https://shlok-jain.github.io/snake`})">sharing</a> with others',
+    theme: 'light',
+    custom_buttons: [
+        {
+            text: 'PLAY AGAIN',
+            theme: 'green',
+            onclick: () => { restart(); modal.hide() },
+        },
+        {
+            text: 'ADJUST SPEED',
+            theme: 'blue',
+            onclick: () => { speed_modal.show(); modal.hide() },
+        }
+    ],
+    close_btn_text: "CLOSE",
+    draggable: true,
+    close_on_out_click: false,
+    hide_close_btn:true
+})
+const speed_modal = new ModalJS({
+    title: 'Speed Adjustment',
+    body: ' Speed Control: <input type="range" id="speed" min="1" max="5"/>',
+    theme: 'light',
+    close_btn_text: "SAVE AND PLAY",
+    draggable: true,
+    close_on_out_click: false,
+    onclose: () => {
+        switch (document.getElementById("speed").value) {
+            case "1":
+                speed = 150;
+                break
+            case "2":
+                speed = 120;
+                break
+            case "3":
+                speed = 100
+                break
+            case "4":
+                speed = 80
+                break
+            case "5":
+                speed = 50
+                break
+
+        }; restart()}
+})
+const gamestart_modal = new ModalJS({
+    title: 'Snake - By Shlok Jain',
+    body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li>For mobile devices swipe in game grid.</li></ul>',
+    theme: 'light',
+    custom_buttons: [
+        {
+            text: 'START PLAYING',
+            theme: 'green',
+            onclick: () => {
+                window.refreshIntervalId = setInterval(() => {
+                    updateSnake();
+                    drawsnake()
+                }, speed);
+                modal.hide()
+            },
+        },
+        {
+            text: 'ADJUST SPEED',
+            theme: 'blue',
+            onclick: () => { speed_modal.show(); modal.hide() },
+        }
+    ],
+    close_btn_text: "CLOSE",
+    draggable: true,
+    close_on_out_click: false,
+    hide_close_btn:true
+})
 // 1 for up
 // 2 for left
 // 3 for right
@@ -112,28 +187,7 @@ const restart = function () {
 
 const gameOver = function () {
     clearInterval(window.refreshIntervalId)
-    const modal = new ModalJS({
-        title: 'Game Over',
-        body: 'Game is over. Do you want to play again.<br><br> Liked the game? Consdier <a href="#" onclick="javascript:navigator.share({url:`https://shlok-jain.github.io/snake`})">sharing</a> with others',
-        theme: 'light',
-        custom_buttons: [
-            {
-                text: 'PLAY AGAIN',
-                theme: 'green',
-                onclick: () => { restart(); modal.hide() },
-            },
-            {
-                text: 'ADJUST SPEED',
-                theme: 'blue',
-                onclick: () => { speed_modal.show(); modal.hide() },
-            }
-        ],
-        close_btn_text: "CLOSE",
-        draggable: true,
-        close_on_out_click: false,
-        hide_close_btn:true
-    })
-    modal.show()
+    gameover_modal.show()
 }
 
 document.addEventListener("keydown", function (event) {
@@ -160,7 +214,6 @@ document.addEventListener("keydown", function (event) {
 drawsnake()
 generateFood()
 
-
 window.onload = function () {
     if (localStorage.getItem("highscore")) {
         document.getElementById("highscore").innerText = localStorage.getItem("highscore")
@@ -169,61 +222,5 @@ window.onload = function () {
         localStorage.setItem("highscore", 0)
         document.getElementById("highscore").innerText = localStorage.getItem("highscore")
     }
-    const modal = new ModalJS({
-        title: 'Snake - By Shlok Jain',
-        body: 'Welcome to Snake Game - By Shlok Jain <br> <br> How to play: <ul style="margin:auto;margin-left:20px;"><li>For computer/laptop use arrow keys</li><li>For mobile devices swipe in game grid.</li></ul>',
-        theme: 'light',
-        custom_buttons: [
-            {
-                text: 'START PLAYING',
-                theme: 'green',
-                onclick: () => {
-                    window.refreshIntervalId = setInterval(() => {
-                        updateSnake();
-                        drawsnake()
-                    }, speed);
-                    modal.hide()
-                },
-            },
-            {
-                text: 'ADJUST SPEED',
-                theme: 'blue',
-                onclick: () => { speed_modal.show(); modal.hide() },
-            }
-        ],
-        close_btn_text: "CLOSE",
-        draggable: true,
-        close_on_out_click: false,
-        hide_close_btn:true
-    })
-    modal.show()
+    gamestart_modal.show()
 }
-
-
-const speed_modal = new ModalJS({
-    title: 'Speed Adjustment',
-    body: ' Speed Control: <input type="range" id="speed" min="1" max="5"/>',
-    theme: 'light',
-    close_btn_text: "SAVE AND PLAY",
-    draggable: true,
-    close_on_out_click: false,
-    onclose: () => {
-        switch (document.getElementById("speed").value) {
-            case "1":
-                speed = 150;
-                break
-            case "2":
-                speed = 120;
-                break
-            case "3":
-                speed = 100
-                break
-            case "4":
-                speed = 80
-                break
-            case "5":
-                speed = 50
-                break
-
-        }; restart()}
-})
