@@ -13,12 +13,12 @@ const gameover_modal = new ModalJS({
         {
             text: 'PLAY AGAIN',
             theme: 'green',
-            onclick: () => { restart(); modal.hide() },
+            onclick: () => { restart(); gameover_modal.hide() },
         },
         {
             text: 'ADJUST SPEED',
             theme: 'blue',
-            onclick: () => { speed_modal.show(); modal.hide() },
+            onclick: () => { speed_modal.show(); gameover_modal.hide() },
         }
     ],
     close_btn_text: "CLOSE",
@@ -66,13 +66,13 @@ const gamestart_modal = new ModalJS({
                     updateSnake();
                     drawsnake()
                 }, speed);
-                modal.hide()
+                gamestart_modal.hide()
             },
         },
         {
             text: 'ADJUST SPEED',
             theme: 'blue',
-            onclick: () => { speed_modal.show(); modal.hide() },
+            onclick: () => { speed_modal.show(); gamestart_modal.hide() },
         }
     ],
     close_btn_text: "CLOSE",
